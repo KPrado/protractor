@@ -1,0 +1,28 @@
+{
+  "name": "ng-calc",
+  "version": "1.0.0",
+  "description": "projeto ng-calc",
+  "main": "index.js",
+  "scripts": {
+    "test": "protractor conf.js",
+    "smoke": "protractor conf.js --grep='@smoke'",
+    "temp": "protractor conf.js --grep='@temp'",
+    "wdup": "webdriver-manager update"
+  },
+  "keywords": [
+    "curso",
+    "protractor",
+    "automação",
+    "qa"
+  ],
+  "author": "Kprado",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "jasmine": "^3.2.0",
+    "jasmine-spec-reporter": "^4.2.1",
+    "mongoose": "^5.4.0",
+    "protractor": "^5.4.1",
+    "protractor-jasmine2-html-reporter": "0.0.7"
+  }
+}
