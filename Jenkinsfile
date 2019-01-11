@@ -4,7 +4,7 @@ pipeline{
             image 'node:8-alpine'
         }
     }
-    stager{
+    stages {
         stage('Run Test'){
             sh "npm install"
             sh "npm install webdriver-manager -g"
