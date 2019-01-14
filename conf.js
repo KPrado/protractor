@@ -1,19 +1,7 @@
-//Arq de conf do protractor
-// exports.config = {
-//     //conectar sem chamar o selenium
-//     directConnect: true,
-//     framework: 'jasmine2',
-//     //o que rodar
-//     specs:['test.js'],
-//     capabilities:{
-//         //onde rodar
-//         'browserName':'chrome'
-//     }
-// }
-
 exports.config = {
 
-    directConnect: true,
+    // directConnect: true,
+    seleniumAddress: 'http://selenium_server:4444/wd/hub',
     framework: 'jasmine2',
     specs: ['specs/tasks-spec.js'],
     baseUrl: 'https://mark7.herokuapp.com',
