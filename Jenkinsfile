@@ -1,10 +1,12 @@
 pipeline {
     agent none
     stages {
-        stage('Run Test') {
-            agent docker{
-                image 'node:8-alpine'
-                args '--link selenium_server'
+        stage('Run Tests') {
+            agent {
+                docker{
+                    image 'node:8-alpine'
+                    args '--link selenium_server'
+                }
             }
             steps{
                 sh "npm install"
@@ -15,13 +17,11 @@ pipeline {
         }
         stage ('Report'){
             agent{
-                docker{
-                    image 'maven:3-alpine'
-                }
-                steps {
-                    allure includeProperties: false, jdk: '', results: [[path: 'allure-results']]
-                } 
+                docker{ image 'maven:3-alpine' }
             }
+            steps {
+                allure includeProperties: false, jdk: '', results: [[path: 'allure-results']]
+            } 
         }
     }
 }
