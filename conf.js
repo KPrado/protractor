@@ -13,14 +13,25 @@ exports.config = {
         TIMEOUT = 3000;
         
         //jasmine html reporter
-        var JasmineHtmlReporter = require('protractor-jasmine2-html-reporter');
-        jasmine.getEnv().addReporter(new JasmineHtmlReporter({
-            savePath:'reports',
-            screenShotsFolder: './shots',
-            takeScreenShots: true,
-            cleanDestination: true,
-            fixedScreenshotName: true
-        }));
+        // var JasmineHtmlReporter = require('protractor-jasmine2-html-reporter');
+        // jasmine.getEnv().addReporter(new JasmineHtmlReporter({
+        //     savePath:'reports',
+        //     screenShotsFolder: './shots',
+        //     takeScreenShots: true,
+        //     cleanDestination: true,
+        //     fixedScreenshotName: true
+        // }));
+
+        var AllureReporter = require('jasmine-allure-reporter');
+        jasmine.getEnv().addReporter(new AllureReporter());
+        jasmine.getEnv().afterEach(function(done){
+            browser.takeScreenshot().then(function(png){
+                allure.createAttachment('Screenshot', function(){
+                    return new Buffer(png, 'base64')
+                }, 'image/png')();
+                done();
+            });
+        });
 
         //conf spec reporter do jasmine
         var SpecReporter = require('jasmine-spec-reporter').SpecReporter;
